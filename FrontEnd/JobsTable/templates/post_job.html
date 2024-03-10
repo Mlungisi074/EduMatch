@@ -1,0 +1,161 @@
+<!-- templates/post_job.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            color: #07130e;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3498db;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3498db;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px; /* Added missing values for padding */
+            font-size: 16px;
+            background-color: #28a084;
+            color: #ffffff;
+            border: 1px solid #12412f;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+  <h1>Post a Job</h1>
+
+  <form method="POST" action="{{ url_for('post_job') }}">
+    <label for="title">Job Title</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">Job Description</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="requirements">Requirements</label>
+    <input type="text" id="requirements" name="requirements" required>
+
+    <label for="hours">Hours</label>
+    <input type="text" id="hours" name="hours" required>
+
+    <button type="submit">Post Job</button>
+  </form>
+
+  <a class="back-button" href="/">Back to Job Listings</a>
+
+<!-- templates/post_job.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #c2e4b9;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            color: #207461;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #7ebb86;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0e2b18;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #153042;
+            border-radius: 5px;
+        }
+
+        .post-button, .back-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+
+        .post-button:hover {
+            background: linear-gradient(to right, #c4df2f, #3498db); /* Adjusted color on hover */
+        }
+
+        .back-button {
+            color: #fffdfd;
+            border: 1px solid #08251a;
+            background: #38947e;
+        }
+
+        .back-button:hover {
+            color: #fff;
+            background: #53a390;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3498db;
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .actions {
+            white-space: nowrap;
+        }
+
+        .actions a, .actions button {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 14px; /* Adjusted font size */
+        }
+
+        .actions button {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 14px; /* Adjusted font size */
+        }
+
+        .post-button, .back-button {
+            display: inline-block; /* Adjusted button alignment */
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-button:hover, .back-button:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+  <h1>Job Listings</h1>
+
+  <table>
+    <tr>
+      <th>Job Title</th>
+      <th>Job Description</th>
+      <th>Requirements</th>
+      <th>Hours</th>
+      <th>Actions</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+      <td>{{ job.title }}</td>
+      <td>{{ job.description }}</td>
+      <td>{{ job.requirements }}</td>
+      <td>{{ job.hours }}</td>
+      <td class="actions">
+        <a href="{{ url_for('update_job', job_id=job.id) }}">Update</a>
+        <form method="post" action="{{ url_for('delete_job', job_id=job.id) }}" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a class="post-button" href="/post_job">Post Jobs</a>
+
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #c2e4b9;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3498db;
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #7db4fc;
+        }
+
+        .post-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background: linear-gradient(to right, #3498db, #6ab0de);
+            color: #ffffff;
+        }
+
+        .post-button:hover {
+            background: linear-gradient(to right, #2980b9, #3498db);
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+
+
+
+</body>
+</html>
