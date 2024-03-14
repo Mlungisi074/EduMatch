@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="text-center">Sign Up</h2>
+    <form id="signupForm" action="{{ url_for('signup') }}" method="POST" novalidate>
+        <div class="form-group">
+            <label for="email">Email Address (Username):</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+        <div class="form-group">
+            <label for="student_number">Student Number:</label>
+            <input type="text" id="student_number" name="student_number" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+            <div class="invalid-feedback">Passwords do not match.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+    <p class="text-center">Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+
+    <!-- Bootstrap JS and jQuery (needed for Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Form validation using Bootstrap
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var form = document.getElementById('signupForm');
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+</body>
+</html>
