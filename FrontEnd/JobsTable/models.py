@@ -26,3 +26,9 @@ class User(db.Model):
     # Method to verify password
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    application_id = db.Column(db.String(36), unique=True, nullable=False)
+    job_id = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)

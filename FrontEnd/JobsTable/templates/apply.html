@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job</title>
+</head>
+<body>
+    <h1>Job Details</h1>
+    {% if job %}
+        <p><strong>Title:</strong> {{ job.title }}</p>
+        <p><strong>Description:</strong> {{ job.description }}</p>
+        <p><strong>Requirements:</strong> {{ job.requirements }}</p>
+        <p><strong>Hours:</strong> {{ job.hours }}</p>
+    {% else %}
+        <p>No job details available.</p>
+    {% endif %}
+</body>
+</html>

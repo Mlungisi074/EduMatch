@@ -75,11 +75,44 @@
             background-color: #2ecc71;
         }
     </style>
+      <style>
+        /* Button styles */
+        .btn {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: background-color 0.3s ease;
+        }
+    
+        .btn:hover {
+          background-color: #0056b3;
+        }
+    
+        /* Additional margin for spacing */
+        .btn + .btn {
+          margin-left: 10px;
+        }
+      </style>
 </head>
 <body>
+    
 
   <h1>Job Listings</h1>
-  <h5><a href="{{ url_for('signup') }}">Go to SignUp</a></h5>
+
+  <!--<a href="{{ url_for('progress') }}" onclick="event.preventDefault(); document.getElementById('track-form').submit();">Check Progress</a>
+  <form id="track-form" action="{{ url_for('progress') }}" method="post" style="display: none;">
+    <input type="hidden" name="application_id" value="YOUR_APPLICATION_ID_HERE">-->
+</form>
+  <!-- Apply for Job button -->
+  <a href="{{ url_for('apply') }}" class="btn">Apply for Job</a>
+  <!-- Check Progress button -->
+  <a href="{{ url_for('progress') }}" class="btn">Check Progress</a>
+  <!-- Go to SignUp button -->
+  <a href="{{ url_for('signup') }}" class="btn">Go to SignUp</a>
 
   <table>
     <tr>

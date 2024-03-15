@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Status</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #343a40;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Application Status</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Name:</strong> {{ application.name }}</p>
+                <p><strong>Status:</strong> {{ application.status }}</p>
+                <form action="/update_status" method="post">
+                    <input type="hidden" name="application_id" value="{{ application_id }}">
+                    <div class="form-group">
+                        <label for="status">Update Status:</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="Pending">Pending</option>
+                            <option value="Under review">Under review</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Status</button>
+                </form>
+                <p><a href="/" class="btn btn-secondary">Track Another</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
