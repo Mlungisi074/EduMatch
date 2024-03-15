@@ -248,6 +248,7 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature
 from flask_mail import Mail, Message
 from models import db, Job, User, Application
 import uuid
+from uuid import uuid4
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobs.db'
@@ -506,25 +507,41 @@ def track():
 #         # You may want to redirect to a different page or render a template for GET requests
 #         return render_template('apply.html')  # Render the apply.html template for GET requests
     
-@app.route('/apply', methods=['GET', 'POST'])
+# Route for viewing job listings and submitting applications
+@app.route('/apply', methods=['GET'])
 def apply():
-    if request.method == 'POST':
-        # Get form data
-        title = request.form['title']
-        description = request.form['description']
-        requirements = request.form['requirements']
-        hours = request.form['hours']
+    # Fetch all jobs from the database
+    jobs = Job.query.all()
 
-        # Create a new job instance and save it to the database
-        new_job = Job(title=title, description=description, requirements=requirements, hours=hours)
-        db.session.add(new_job)
-        db.session.commit()
+    # Pass the job data to the apply.html template
+    return render_template('apply.html', jobs=jobs)
 
-        # Redirect to the apply route with the job ID as a parameter
-        return redirect(url_for('apply', job_id=new_job.id))
+# Route for handling job application form submission
+@app.route('/submit_application', methods=['POST'])
+def submit_application():
+    # Get form data
+    job_id = request.form['job_id']
+    user_id = request.form['user_id']  # Assuming you have user authentication implemented
 
-    # If the request method is not POST, display the apply.html template
-    return render_template('apply.html', job=None)
+    # Check if the job ID exists in the database
+    job = Job.query.get(job_id)
+    if not job:
+        flash("Job not found.", 'error')
+        return redirect(url_for('apply'))  # Redirect back to the job application page
+
+    # Generate a unique application ID
+    application_id = generate_application_id()
+
+    # Create a new job application instance and save it to the database
+    new_application = Application(application_id=application_id, job_id=job_id, user_id=user_id)
+    db.session.add(new_application)
+    db.session.commit()
+
+    flash("Application submitted successfully! Your application ID is {}".format(application_id), 'success')
+    return redirect(url_for('apply'))  # Redirect back to the job application page
+
+
+
     
 @app.route('/track', methods=['GET'])
 def track_application():
@@ -540,6 +557,13 @@ def track_application():
     else:
         return jsonify({'error': 'Application ID not provided'}), 400
 
+# Function to generate a unique application ID
+def generate_application_id():
+    return str(uuid.uuid4())
+
+@app.route('/apply/<application_id>')
+def application_confirmation(application_id):
+    return render_template('application_confirmation.html', application_id=application_id)
 
 
 if __name__ == '__main__':
